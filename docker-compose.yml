@@ -12,6 +12,8 @@ services:
   bot:
     image: ghcr.io/cycneuramus/signal-aichat
     container_name: signal-aichat-bot
+    depends_on:
+    - signald
     restart: unless-stopped
     env_file:
       - .env
@@ -19,11 +21,11 @@ services:
       - ./config:/home/signal-aichat/config
       - ./signald:/signald
 
-  llama:
-    image: ghcr.io/ghcr.io/abetlen/llama-cpp-python
-    container_name: signal-aichat-llama
-    restart: unless-stopped
-    env_file:
-      - .env
-    volumes:
-      - ./models:/models
+#  llama:
+#    image: ghcr.io/ghcr.io/abetlen/llama-cpp-python
+#    container_name: signal-aichat-llama
+#    restart: unless-stopped
+#    env_file:
+#      - .env
+#    volumes:
+#      - ./models:/models
